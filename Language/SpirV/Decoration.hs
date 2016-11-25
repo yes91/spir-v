@@ -205,7 +205,7 @@ instance SpirEnum Decoration Word32 where
   fromWord _ = Nothing
 
   requiredCapabilities RelaxedPrecision = [Capability.Shader]
-  requiredCapabilities SpecId = [Capability.ShaderKernel]
+  requiredCapabilities SpecId = [Capability.Shader, Capability.Kernel]
   requiredCapabilities Block = [Capability.Shader]
   requiredCapabilities BufferBlock = [Capability.Shader]
   requiredCapabilities RowMajor = [Capability.Matrix]
