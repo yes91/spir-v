@@ -5,25 +5,51 @@ import Data.Word (Word32)
 import Language.SpirV.SpirEnum
 import qualified Language.SpirV.Capability as Capability
 
-data ImageChannelOrder = R 
-                       | A 
-                       | RG 
-                       | RA 
-                       | RGB 
-                       | RGBA 
-                       | BGRA 
-                       | ARGB 
-                       | Intensity 
-                       | Luminance 
-                       | Rx 
-                       | RGx 
-                       | RGBx 
-                       | Depth 
-                       | DepthStencil 
-                       | SRGB 
-                       | SRGBx 
-                       | SRGBA 
-                       | SBGRA
+
+-- | Image channel order returned by __<https:\/\/www.khronos.org\/registry\/spir-v\/specs\/1.0\/SPIRV.html#OpImageQueryOrder OpImageQueryOrder>__.
+--
+-- <https:\/\/www.khronos.org\/registry\/spir-v\/specs\/1.0\/SPIRV.html#_a_id_image_channel_order_a_image_channel_order Source for Image Channel Order>
+data ImageChannelOrder =
+  
+    R
+  
+  | A
+  
+  | RG
+  
+  | RA
+  
+  | RGB
+  
+  | RGBA
+  
+  | BGRA
+  
+  | ARGB
+  
+  | Intensity
+  
+  | Luminance
+  
+  | Rx
+  
+  | RGx
+  
+  | RGBx
+  
+  | Depth
+  
+  | DepthStencil
+  
+  | SRGB
+  
+  | SRGBx
+  
+  | SRGBA
+  
+  | SBGRA
+  
+  | ABGR
   deriving(Read, Show, Eq, Ord)
 
 instance SpirEnum ImageChannelOrder Word32 where
@@ -46,6 +72,7 @@ instance SpirEnum ImageChannelOrder Word32 where
   toWord SRGBx = 16
   toWord SRGBA = 17
   toWord SBGRA = 18
+  toWord ABGR = 19
 
   fromWord 0 = Just R
   fromWord 1 = Just A
@@ -66,6 +93,7 @@ instance SpirEnum ImageChannelOrder Word32 where
   fromWord 16 = Just SRGBx
   fromWord 17 = Just SRGBA
   fromWord 18 = Just SBGRA
+  fromWord 19 = Just ABGR
   fromWord _ = Nothing
 
   requiredCapabilities R = [Capability.Kernel]
@@ -87,4 +115,5 @@ instance SpirEnum ImageChannelOrder Word32 where
   requiredCapabilities SRGBx = [Capability.Kernel]
   requiredCapabilities SRGBA = [Capability.Kernel]
   requiredCapabilities SBGRA = [Capability.Kernel]
+  requiredCapabilities ABGR = [Capability.Kernel]
   

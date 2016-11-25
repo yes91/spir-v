@@ -1,0 +1,6 @@
+flags: {}
+packages:
+- '.'
+- generate/
+extra-deps: []
+resolver: lts-3.10

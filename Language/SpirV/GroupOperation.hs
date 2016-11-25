@@ -5,9 +5,33 @@ import Data.Word (Word32)
 import Language.SpirV.SpirEnum
 import qualified Language.SpirV.Capability as Capability
 
-data GroupOperation = Reduce 
-                    | InclusiveScan 
-                    | ExclusiveScan
+
+-- | Defines the class of workgroup or subgroup operation. Used by:
+--
+-- -   __<https:\/\/www.khronos.org\/registry\/spir-v\/specs\/1.0\/SPIRV.html#OpGroupIAdd OpGroupIAdd>__
+--
+-- -   __<https:\/\/www.khronos.org\/registry\/spir-v\/specs\/1.0\/SPIRV.html#OpGroupFAdd OpGroupFAdd>__
+--
+-- -   __<https:\/\/www.khronos.org\/registry\/spir-v\/specs\/1.0\/SPIRV.html#OpGroupFMin OpGroupFMin>__
+--
+-- -   __<https:\/\/www.khronos.org\/registry\/spir-v\/specs\/1.0\/SPIRV.html#OpGroupUMin OpGroupUMin>__
+--
+-- -   __<https:\/\/www.khronos.org\/registry\/spir-v\/specs\/1.0\/SPIRV.html#OpGroupSMin OpGroupSMin>__
+--
+-- -   __<https:\/\/www.khronos.org\/registry\/spir-v\/specs\/1.0\/SPIRV.html#OpGroupFMax OpGroupFMax>__
+--
+-- -   __<https:\/\/www.khronos.org\/registry\/spir-v\/specs\/1.0\/SPIRV.html#OpGroupUMax OpGroupUMax>__
+--
+-- -   __<https:\/\/www.khronos.org\/registry\/spir-v\/specs\/1.0\/SPIRV.html#OpGroupSMax OpGroupSMax>__
+--
+-- <https:\/\/www.khronos.org\/registry\/spir-v\/specs\/1.0\/SPIRV.html#_a_id_group_operation_a_group_operation Source for Group Operation>
+data GroupOperation =
+    -- | A reduction operation for all values of a specific value X specified by <https:\/\/www.khronos.org\/registry\/spir-v\/specs\/1.0\/SPIRV.html#Invocation invocations> within a workgroup.
+    Reduce
+    -- | A binary operation with an identity /I/ and /n/ (where /n/ is the size of the workgroup) elements[/a0/, /a1/, … /an-1/] resulting in [/a0/, (/a0/ op /a1/), …(/a0/ op /a1/ op … op /an-1/)]
+  | InclusiveScan
+    -- | A binary operation with an identity /I/ and /n/ (where /n/ is the size of the workgroup) elements[/a0/, /a1/, … /an-1/] resulting in [/I/, /a0/, (/a0/ op /a1/), … (/a0/ op /a1/ op … op /an-2/)].
+  | ExclusiveScan
   deriving(Read, Show, Eq, Ord)
 
 instance SpirEnum GroupOperation Word32 where

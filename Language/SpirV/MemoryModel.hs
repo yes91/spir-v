@@ -5,9 +5,17 @@ import Data.Word (Word32)
 import Language.SpirV.SpirEnum
 import qualified Language.SpirV.Capability as Capability
 
-data MemoryModel = Simple 
-                 | GLSL450 
-                 | OpenCL
+
+-- | Used by __<https:\/\/www.khronos.org\/registry\/spir-v\/specs\/1.0\/SPIRV.html#OpMemoryModel OpMemoryModel>__.
+--
+-- <https:\/\/www.khronos.org\/registry\/spir-v\/specs\/1.0\/SPIRV.html#_a_id_memory_model_a_memory_model Source for Memory Model>
+data MemoryModel =
+    -- | No shared memory consistency issues.
+    Simple
+    -- | Memory model needed by later versions of GLSL and ESSL. Works across multiple versions.
+  | GLSL450
+    -- | OpenCL memory model.
+  | OpenCL
   deriving(Read, Show, Eq, Ord)
 
 instance SpirEnum MemoryModel Word32 where

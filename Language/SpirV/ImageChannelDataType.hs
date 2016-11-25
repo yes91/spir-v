@@ -5,22 +5,45 @@ import Data.Word (Word32)
 import Language.SpirV.SpirEnum
 import qualified Language.SpirV.Capability as Capability
 
-data ImageChannelDataType = SnormInt8 
-                          | SnormInt16 
-                          | UnormInt8 
-                          | UnormInt16 
-                          | UnormShort565 
-                          | UnormShort555 
-                          | UnormInt101010 
-                          | SignedInt8 
-                          | SignedInt16 
-                          | SignedInt32 
-                          | UnsignedInt8 
-                          | UnsignedInt16 
-                          | UnsignedInt32 
-                          | HalfFloat 
-                          | Float 
-                          | UnormInt24
+
+-- | Image channel data type returned by __<https:\/\/www.khronos.org\/registry\/spir-v\/specs\/1.0\/SPIRV.html#OpImageQueryFormat OpImageQueryFormat>__.
+--
+-- <https:\/\/www.khronos.org\/registry\/spir-v\/specs\/1.0\/SPIRV.html#_a_id_image_channel_data_type_a_image_channel_data_type Source for Image Channel Data Type>
+data ImageChannelDataType =
+  
+    SnormInt8
+  
+  | SnormInt16
+  
+  | UnormInt8
+  
+  | UnormInt16
+  
+  | UnormShort565
+  
+  | UnormShort555
+  
+  | UnormInt101010
+  
+  | SignedInt8
+  
+  | SignedInt16
+  
+  | SignedInt32
+  
+  | UnsignedInt8
+  
+  | UnsignedInt16
+  
+  | UnsignedInt32
+  
+  | HalfFloat
+  
+  | Float
+  
+  | UnormInt24
+  
+  | UnormInt1010102
   deriving(Read, Show, Eq, Ord)
 
 instance SpirEnum ImageChannelDataType Word32 where
@@ -40,6 +63,7 @@ instance SpirEnum ImageChannelDataType Word32 where
   toWord HalfFloat = 13
   toWord Float = 14
   toWord UnormInt24 = 15
+  toWord UnormInt1010102 = 16
 
   fromWord 0 = Just SnormInt8
   fromWord 1 = Just SnormInt16
@@ -57,6 +81,7 @@ instance SpirEnum ImageChannelDataType Word32 where
   fromWord 13 = Just HalfFloat
   fromWord 14 = Just Float
   fromWord 15 = Just UnormInt24
+  fromWord 16 = Just UnormInt1010102
   fromWord _ = Nothing
 
   requiredCapabilities SnormInt8 = [Capability.Kernel]
@@ -75,4 +100,5 @@ instance SpirEnum ImageChannelDataType Word32 where
   requiredCapabilities HalfFloat = [Capability.Kernel]
   requiredCapabilities Float = [Capability.Kernel]
   requiredCapabilities UnormInt24 = [Capability.Kernel]
+  requiredCapabilities UnormInt1010102 = [Capability.Kernel]
   

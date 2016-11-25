@@ -5,46 +5,91 @@ import Data.Word (Word32)
 import Language.SpirV.SpirEnum
 import qualified Language.SpirV.Capability as Capability
 
-data ImageFormat = Unknown 
-                 | Rgba32f 
-                 | Rgba16f 
-                 | R32f 
-                 | Rgba8 
-                 | Rgba8Snorm 
-                 | Rg32f 
-                 | Rg16f 
-                 | R11fG11fB10f 
-                 | R16f 
-                 | Rgba16 
-                 | Rgb10A2 
-                 | Rg16 
-                 | Rg8 
-                 | R16 
-                 | R8 
-                 | Rgba16Snorm 
-                 | Rg16Snorm 
-                 | Rg8Snorm 
-                 | R16Snorm 
-                 | R8Snorm 
-                 | Rgba32i 
-                 | Rgba16i 
-                 | Rgba8i 
-                 | R32i 
-                 | Rg32i 
-                 | Rg16i 
-                 | Rg8i 
-                 | R16i 
-                 | R8i 
-                 | Rgba32ui 
-                 | Rgba16ui 
-                 | Rgba8ui 
-                 | R32ui 
-                 | Rgb10a2ui 
-                 | Rg32ui 
-                 | Rg16ui 
-                 | Rg8ui 
-                 | R16ui 
-                 | R8ui
+
+-- | Declarative image format. Used by __<https:\/\/www.khronos.org\/registry\/spir-v\/specs\/1.0\/SPIRV.html#OpTypeImage OpTypeImage>__.
+--
+-- <https:\/\/www.khronos.org\/registry\/spir-v\/specs\/1.0\/SPIRV.html#_a_id_image_format_a_image_format Source for Image Format>
+data ImageFormat =
+  
+    Unknown
+  
+  | Rgba32f
+  
+  | Rgba16f
+  
+  | R32f
+  
+  | Rgba8
+  
+  | Rgba8Snorm
+  
+  | Rg32f
+  
+  | Rg16f
+  
+  | R11fG11fB10f
+  
+  | R16f
+  
+  | Rgba16
+  
+  | Rgb10A2
+  
+  | Rg16
+  
+  | Rg8
+  
+  | R16
+  
+  | R8
+  
+  | Rgba16Snorm
+  
+  | Rg16Snorm
+  
+  | Rg8Snorm
+  
+  | R16Snorm
+  
+  | R8Snorm
+  
+  | Rgba32i
+  
+  | Rgba16i
+  
+  | Rgba8i
+  
+  | R32i
+  
+  | Rg32i
+  
+  | Rg16i
+  
+  | Rg8i
+  
+  | R16i
+  
+  | R8i
+  
+  | Rgba32ui
+  
+  | Rgba16ui
+  
+  | Rgba8ui
+  
+  | R32ui
+  
+  | Rgb10a2ui
+  
+  | Rg32ui
+  
+  | Rg16ui
+  
+  | Rg8ui
+  
+  | R16ui
+  
+  | R8ui
   deriving(Read, Show, Eq, Ord)
 
 instance SpirEnum ImageFormat Word32 where
@@ -131,44 +176,43 @@ instance SpirEnum ImageFormat Word32 where
   fromWord 39 = Just R8ui
   fromWord _ = Nothing
 
-  requiredCapabilities Unknown = [Capability.Shader]
   requiredCapabilities Rgba32f = [Capability.Shader]
   requiredCapabilities Rgba16f = [Capability.Shader]
   requiredCapabilities R32f = [Capability.Shader]
   requiredCapabilities Rgba8 = [Capability.Shader]
   requiredCapabilities Rgba8Snorm = [Capability.Shader]
-  requiredCapabilities Rg32f = [Capability.Shader]
-  requiredCapabilities Rg16f = [Capability.Shader]
-  requiredCapabilities R11fG11fB10f = [Capability.Shader]
-  requiredCapabilities R16f = [Capability.Shader]
-  requiredCapabilities Rgba16 = [Capability.Shader]
-  requiredCapabilities Rgb10A2 = [Capability.Shader]
-  requiredCapabilities Rg16 = [Capability.Shader]
-  requiredCapabilities Rg8 = [Capability.Shader]
-  requiredCapabilities R16 = [Capability.Shader]
-  requiredCapabilities R8 = [Capability.Shader]
-  requiredCapabilities Rgba16Snorm = [Capability.Shader]
-  requiredCapabilities Rg16Snorm = [Capability.Shader]
-  requiredCapabilities Rg8Snorm = [Capability.Shader]
-  requiredCapabilities R16Snorm = [Capability.Shader]
-  requiredCapabilities R8Snorm = [Capability.Shader]
+  requiredCapabilities Rg32f = [Capability.StorageImageExtendedFormats]
+  requiredCapabilities Rg16f = [Capability.StorageImageExtendedFormats]
+  requiredCapabilities R11fG11fB10f = [Capability.StorageImageExtendedFormats]
+  requiredCapabilities R16f = [Capability.StorageImageExtendedFormats]
+  requiredCapabilities Rgba16 = [Capability.StorageImageExtendedFormats]
+  requiredCapabilities Rgb10A2 = [Capability.StorageImageExtendedFormats]
+  requiredCapabilities Rg16 = [Capability.StorageImageExtendedFormats]
+  requiredCapabilities Rg8 = [Capability.StorageImageExtendedFormats]
+  requiredCapabilities R16 = [Capability.StorageImageExtendedFormats]
+  requiredCapabilities R8 = [Capability.StorageImageExtendedFormats]
+  requiredCapabilities Rgba16Snorm = [Capability.StorageImageExtendedFormats]
+  requiredCapabilities Rg16Snorm = [Capability.StorageImageExtendedFormats]
+  requiredCapabilities Rg8Snorm = [Capability.StorageImageExtendedFormats]
+  requiredCapabilities R16Snorm = [Capability.StorageImageExtendedFormats]
+  requiredCapabilities R8Snorm = [Capability.StorageImageExtendedFormats]
   requiredCapabilities Rgba32i = [Capability.Shader]
   requiredCapabilities Rgba16i = [Capability.Shader]
   requiredCapabilities Rgba8i = [Capability.Shader]
   requiredCapabilities R32i = [Capability.Shader]
-  requiredCapabilities Rg32i = [Capability.Shader]
-  requiredCapabilities Rg16i = [Capability.Shader]
-  requiredCapabilities Rg8i = [Capability.Shader]
-  requiredCapabilities R16i = [Capability.Shader]
-  requiredCapabilities R8i = [Capability.Shader]
+  requiredCapabilities Rg32i = [Capability.StorageImageExtendedFormats]
+  requiredCapabilities Rg16i = [Capability.StorageImageExtendedFormats]
+  requiredCapabilities Rg8i = [Capability.StorageImageExtendedFormats]
+  requiredCapabilities R16i = [Capability.StorageImageExtendedFormats]
+  requiredCapabilities R8i = [Capability.StorageImageExtendedFormats]
   requiredCapabilities Rgba32ui = [Capability.Shader]
   requiredCapabilities Rgba16ui = [Capability.Shader]
   requiredCapabilities Rgba8ui = [Capability.Shader]
   requiredCapabilities R32ui = [Capability.Shader]
-  requiredCapabilities Rgb10a2ui = [Capability.Shader]
-  requiredCapabilities Rg32ui = [Capability.Shader]
-  requiredCapabilities Rg16ui = [Capability.Shader]
-  requiredCapabilities Rg8ui = [Capability.Shader]
-  requiredCapabilities R16ui = [Capability.Shader]
-  requiredCapabilities R8ui = [Capability.Shader]
-  
+  requiredCapabilities Rgb10a2ui = [Capability.StorageImageExtendedFormats]
+  requiredCapabilities Rg32ui = [Capability.StorageImageExtendedFormats]
+  requiredCapabilities Rg16ui = [Capability.StorageImageExtendedFormats]
+  requiredCapabilities Rg8ui = [Capability.StorageImageExtendedFormats]
+  requiredCapabilities R16ui = [Capability.StorageImageExtendedFormats]
+  requiredCapabilities R8ui = [Capability.StorageImageExtendedFormats]
+  requiredCapabilities _ = []

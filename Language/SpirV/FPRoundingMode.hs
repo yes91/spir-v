@@ -5,10 +5,25 @@ import Data.Word (Word32)
 import Language.SpirV.SpirEnum
 import qualified Language.SpirV.Capability as Capability
 
-data FPRoundingMode = RTE 
-                    | RTZ 
-                    | RTP 
-                    | RTN
+
+-- | Associate a rounding mode to a floating-point conversion instruction.
+--
+-- By default
+--
+-- -   Conversions from floating-point to integer types use the round-toward-zero rounding mode.
+--
+-- -   Conversions to floating-point types use the round-to-nearest-even rounding mode.
+--
+-- <https:\/\/www.khronos.org\/registry\/spir-v\/specs\/1.0\/SPIRV.html#_a_id_fp_rounding_mode_a_fp_rounding_mode Source for FP Rounding Mode>
+data FPRoundingMode =
+    -- | Round to nearest even.
+    RTE
+    -- | Round towards zero.
+  | RTZ
+    -- | Round towards positive infinity.
+  | RTP
+    -- | Round towards negative infinity.
+  | RTN
   deriving(Read, Show, Eq, Ord)
 
 instance SpirEnum FPRoundingMode Word32 where
